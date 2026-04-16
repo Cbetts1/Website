@@ -10,7 +10,7 @@ CREATE TABLE "Product" (
     "tags" TEXT NOT NULL,
     "fileFormat" TEXT NOT NULL,
     "filePath" TEXT NOT NULL,
-    "imageUrl" TEXT NOT NULL DEFAULT '/images/placeholder.png',
+    "imageUrl" TEXT NOT NULL DEFAULT '/images/placeholder.svg',
     "featured" BOOLEAN NOT NULL DEFAULT false,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "aiGenNote" TEXT NOT NULL DEFAULT 'This product is AI-generated and open-licensed.',
