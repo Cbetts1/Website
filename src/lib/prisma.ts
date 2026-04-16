@@ -1,14 +1,11 @@
 import path from "path";
 import { PrismaClient } from "@/generated/prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
 
 function createPrismaClient() {
-  const dbUrl =
+  const url =
     process.env.DATABASE_URL ??
     `file:${path.resolve(process.cwd(), "prisma/dev.db")}`;
-  const adapter = new PrismaLibSql({ url: dbUrl });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return new PrismaClient({ adapter } as any);
+  return new PrismaClient({ datasources: { db: { url } } });
 }
 
 const globalForPrisma = globalThis as unknown as {
