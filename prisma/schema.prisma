@@ -1,0 +1,67 @@
+// Prisma schema for MindfulStore e-commerce platform
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  shortDesc   String
+  longDesc    String
+  price       Float    // in USD
+  category    String   // "ebook" | "sticker-pack" | "tool"
+  tags        String   // comma-separated list
+  fileFormat  String   // e.g. "PDF", "PNG Pack", "ZIP"
+  filePath    String   // relative path under /secure-downloads/
+  imageUrl    String   @default("/images/placeholder.svg")
+  featured    Boolean  @default(false)
+  active      Boolean  @default(true)
+  aiGenNote   String   @default("This product is AI-generated and open-licensed.")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  stripeSessionId String?     @unique
+  stripePaymentId String?
+  customerEmail   String
+  customerName    String
+  status          String      @default("pending") // pending | paid | failed | refunded
+  total           Float
+  currency        String      @default("usd")
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  orderItems      OrderItem[]
+  downloads       Download[]
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  productId String
+  price     Float
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Download {
+  id          String    @id @default(cuid())
+  orderId     String
+  token       String    @unique @default(cuid())
+  productId   String
+  expiresAt   DateTime
+  downloadCount Int     @default(0)
+  maxDownloads  Int     @default(5)
+  createdAt   DateTime  @default(now())
+  order       Order     @relation(fields: [orderId], references: [id])
+}
