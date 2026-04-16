@@ -261,8 +261,6 @@ Visit `/admin` for the dashboard with:
 | Backend | Next.js API Routes | MIT |
 | Database | SQLite + Prisma 7 | MIT / Apache 2 |
 | Payment | Stripe (JS SDK) | MIT (SDK) |
-| Email | Nodemailer | MIT |
-| DB Adapter | @prisma/adapter-libsql | MIT |
 | Runtime | Node.js 20+ | MIT |
 
 **What's free/open-source:** Everything except Stripe transaction fees (2.9% + $0.30 per successful charge — no monthly fee).

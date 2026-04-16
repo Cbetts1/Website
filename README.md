@@ -48,7 +48,6 @@ All content is **AI-generated** or from **CC0/public-domain** sources — no cop
 | Styling | Tailwind CSS 4 | MIT |
 | Backend | Next.js API Routes | MIT |
 | Database | SQLite + Prisma 7 | MIT / Apache 2 |
-| DB Adapter | @prisma/adapter-libsql | MIT |
 | Payment | Stripe (SDK free; pay per transaction) | MIT SDK |
 | Email | Nodemailer | MIT |
 | Date utilities | date-fns | MIT |
@@ -207,4 +206,3 @@ Built with:
 - [Prisma](https://prisma.io)
 - [Stripe](https://stripe.com)
 - [Nodemailer](https://nodemailer.com)
-- [libsql](https://github.com/libsql/libsql)
